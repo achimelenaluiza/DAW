@@ -47,6 +47,14 @@ namespace Lab2.Controllers
             }
             return View();
         }
+
+        // Exercitiul 3:
+        // https://localhost:44376/regex/ex3
+        //[Route("Exercises/Ex3/{numar:regex(^\\d{2,6}[02468]$)}")]
+        public string ParsareRegex(int? numar)
+        {
+            return "Numarul introdus este " + numar.ToString();
+        }
     }
     
 }
