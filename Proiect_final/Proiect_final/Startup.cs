@@ -36,25 +36,25 @@ namespace Proiect_final
                 user.UserName = "admin@admin.com";
                 user.Email = "admin@admin.com";
 
-                var adminCreated = userManager.Create(user, "Admin2020!");
+                var adminCreated = userManager.Create(user, "Admin2021!");
                 if (adminCreated.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "Admin");
                 }
             }
 
-            // ATENTIE !!! Pentru proiecte, pentru a adauga un rol nou trebuie sa adaugati secventa:
-            /*if (!roleManager.RoleExists("your_role_name"))
-             * {
-             * // adaugati rolul specific aplicatiei voastre
-             * var role = new IdentityRole();
-             * role.Name = "your_role_name";
-             * roleManager.Create(role);
-             * 
+            if (!roleManager.RoleExists("User"))
+            {
+               // adaugati rolul specific aplicatiei voastre
+               var role = new IdentityRole();
+               role.Name = "User";
+               roleManager.Create(role);
+              
                 // se adauga utilizatorul
                 var user = new ApplicationUser();
-                user.UserName = "your_user_email";
-                user.Email = "your_user_email";             }*/
+                user.UserName = "user@user.com";
+                user.Email = "user@user.com";             
+            }
         }
     }
 }
