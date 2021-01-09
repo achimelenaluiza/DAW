@@ -16,6 +16,9 @@ namespace Proiect_final.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -29,5 +32,7 @@ namespace Proiect_final.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
