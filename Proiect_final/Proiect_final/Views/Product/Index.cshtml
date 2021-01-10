@@ -12,18 +12,14 @@
     <br />
     <p>@product.Name</p>
     <br />
-    @for (var i = 1; i <= product.Gallery.NumberOfPictures; i++)
-    {
-        foreach (var j in product.Gallery.ImageUrls)
-        {
-            <p>j</p>
-         }
-     }
-    
+
+    <img src="@Url.Content(product.Gallery.ImageUrl1)" />
+    <img src="@Url.Content(product.Gallery.ImageUrl2)" />
+    <img src="@Url.Content(product.Gallery.ImageUrl3)" />
 
     @using (Html.BeginForm(
-        actionName: "Details", controllerName: "Product", method: FormMethod.Get,
-        routeValues: new { id = product.ProductId }))
+            actionName: "Details", controllerName: "Product", method: FormMethod.Get,
+            routeValues: new { id = product.ProductId }))
     {
         <button class="btn btn-primary">Details</button>
     }

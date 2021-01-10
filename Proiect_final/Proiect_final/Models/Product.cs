@@ -72,8 +72,9 @@ namespace Proiect_final.Models
                },
                Gallery = new Gallery
                {
-                   NumberOfPictures = 3,
-                   ImageUrls = new string[] { "~/Content/blue-shopping-bag-md.png", "~/Content/blue-shopping-bag-md.png", "~/Content/blue-shopping-bag-md.png" }
+                   ImageUrl1 = "~/Content/blue-shopping-bag-md.png",
+                   ImageUrl2 = "~/Content/blue-shopping-bag-md.png",
+                   ImageUrl3 = "~/Content/blue-shopping-bag-md.png"
                }
             });
             

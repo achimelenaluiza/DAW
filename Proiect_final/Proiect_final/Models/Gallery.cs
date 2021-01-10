@@ -11,8 +11,11 @@ namespace Proiect_final.Models
     {
         [Key, Column("Gallery_id")]
         public int GalleryId { get; set; }
-        public int NumberOfPictures { get; set; }
-        public string[] ImageUrls { get; set; }
+        public string ImageUrl1 { get; set; }
+        public string ImageUrl2 { get; set; }
+        public string ImageUrl3 { get; set; }
+
+
 
         // one-to one-relationship
         [Required]
