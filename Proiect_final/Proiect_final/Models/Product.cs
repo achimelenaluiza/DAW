@@ -17,7 +17,6 @@ namespace Proiect_final.Models
             MaxLength(50, ErrorMessage = "Product name cannot be more than 50")]
         public string Name { get; set; }
         
-        public string ProductImageUrl { get; set; }
         public string Description { get; set; }
 
         public double Price { get; set; }
@@ -29,6 +28,9 @@ namespace Proiect_final.Models
 
         //many to many
         public virtual ICollection<CelebrityWhoRecommands> CelebritiesWhoRecommand { get; set; }
+
+        //one to one
+        public virtual Gallery Gallery { get; set; }
     }
 
     public class DbCtx : DbContext
@@ -51,15 +53,27 @@ namespace Proiect_final.Models
             ctx.Products.Add(new Product
             {
                Name = "Little Black Dress",
-               ProductImageUrl = "",
                Price = 105.50,
                Description = "blabla",
-               Category = new Category {
+               Category = new Category 
+               {
                    Name = "Clothes"
                },
                CelebritiesWhoRecommand = new List<CelebrityWhoRecommands>
                {
-                   new CelebrityWhoRecommands {Name = "Rihanna"}
+                   new CelebrityWhoRecommands 
+                   {
+                       Name = "Rihanna",
+                       Testimonial = new Testimonial
+                       {
+                           Comment = "My favourite dress of all times!"
+                       }
+                   }
+               },
+               Gallery = new Gallery
+               {
+                   NumberOfPictures = 3,
+                   ImageUrls = new string[] { "~/Content/blue-shopping-bag-md.png", "~/Content/blue-shopping-bag-md.png", "~/Content/blue-shopping-bag-md.png" }
                }
             });
             

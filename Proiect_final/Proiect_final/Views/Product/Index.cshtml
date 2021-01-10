@@ -7,18 +7,26 @@
 
 @foreach (var product in ViewBag.Products)
 {
-    <div class="panel-body">
-        @Html.Label("Name", "Name:")
-        <br />
-        <p>@product.Name</p>
-
-
-        @using (Html.BeginForm(
-            actionName: "Details", controllerName: "Product", method: FormMethod.Get,
-            routeValues: new { id = product.ProductId }))
+<div class="panel-body">
+    @Html.Label("Name", "Name:")
+    <br />
+    <p>@product.Name</p>
+    <br />
+    @for (var i = 1; i <= product.Gallery.NumberOfPictures; i++)
+    {
+        foreach (var j in product.Gallery.ImageUrls)
         {
-            <button class="btn btn-primary">Details</button>
-        }
-    </div>
+            <p>j</p>
+         }
+     }
+    
+
+    @using (Html.BeginForm(
+        actionName: "Details", controllerName: "Product", method: FormMethod.Get,
+        routeValues: new { id = product.ProductId }))
+    {
+        <button class="btn btn-primary">Details</button>
+    }
+</div>
 }
 

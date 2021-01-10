@@ -13,5 +13,7 @@ namespace Proiect_final.Models
         public string Name { get; set; }
         // many-to-many relationship
         public virtual ICollection<Product> Products { get; set; }
+        // one-to one-relationship
+        public virtual Testimonial Testimonial { get; set; }
     }
 }
