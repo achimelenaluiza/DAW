@@ -1,0 +1,27 @@
+﻿@model Proiect_final.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@Html.Label("Name", "Name:")
+<br />
+<p>@Model.Name</p>
+
+@Html.Label("Price", "Price:")
+<br />
+<p>@Model.Price</p>
+
+@if (Model.CelebritiesWhoRecommand.Count > 0)
+{
+    @Html.Label("CelebritiesWhoRecommand", "Celebrities who recommand:")
+    <br />
+    <ul>
+        @foreach (var celebrity in Model.CelebritiesWhoRecommand)
+        {
+            <li>@celebrity.Name</li>
+        }
+    </ul>
+}
