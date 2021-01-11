@@ -192,11 +192,23 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="Content\blue-shopping-bag-md.png" />
+    <Content Include="Content\Images\blue-shopping-bag-md.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\prod11.jpg" />
+    <Content Include="Content\Images\prod12.jpg" />
+    <Content Include="Content\Images\prod13.jpg" />
+    <Content Include="Content\Images\prod21.jpg" />
+    <Content Include="Content\Images\prod22.jpg" />
+    <Content Include="Content\Images\prod23.jpg" />
+    <Content Include="Content\Images\prod31.jpg" />
+    <Content Include="Content\Images\prod32.png" />
+    <Content Include="Content\Images\prod33.jpg" />
+    <Content Include="Content\Images\prod41.png" />
+    <Content Include="Content\Images\prod42.png" />
+    <Content Include="Content\Images\prod43.png" />
     <Content Include="Content\img1.jpg" />
     <Content Include="Content\img2.jpg" />
     <Content Include="favicon.ico" />

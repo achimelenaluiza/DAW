@@ -14,6 +14,16 @@
 <br />
 <p>@Model.Price $</p>
 
+@Html.Label("Description", "Description")
+<br />
+<p>@Model.Description $</p>
+
+<br />
+<h3>
+    You can find the product <a href="@Model.ShopLink" target="_blank">here</a>
+</h3>
+<br />
+
 @if (Model.CelebritiesWhoRecommand.Count > 0)
 {
     @Html.Label("CelebritiesWhoRecommand", "Celebrities who recommand:")
@@ -21,11 +31,10 @@
     <ul>
         @foreach (var celebrity in Model.CelebritiesWhoRecommand)
         {
-            <li>@celebrity.Name</li>
-            
-            @Html.Label("Testimonial", "Testimonial:")
-            <br />
+            <li><strong>@celebrity.Name :</strong></li>
+
             <p>@celebrity.Testimonial.Comment</p>
+            <br />
         }
     </ul>
 }
