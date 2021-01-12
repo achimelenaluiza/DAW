@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Proiect_final.CustomValidations;
 
 namespace Proiect_final.Models
 {
@@ -22,6 +23,7 @@ namespace Proiect_final.Models
 
         public double Price { get; set; }
 
+        [LinkOnly(ErrorMessage = "Link must be secured! https://")]
         public string ShopLink { get; set; }
 
         // one to many

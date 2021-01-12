@@ -75,7 +75,7 @@ namespace Proiect_final.Controllers
                 }
                 return View(productRequest);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return View(productRequest);
             }
