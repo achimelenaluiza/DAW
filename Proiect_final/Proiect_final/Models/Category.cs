@@ -11,7 +11,7 @@ namespace Proiect_final.Models
 {
     public class Category
     {
-        [Key, Column("Category_id")]
+        [Key]
         public int CategoryId { get; set; }
 
         [MinLength(5, ErrorMessage = "Category name cannot be less than 5"),

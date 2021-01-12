@@ -14,28 +14,52 @@
 
 @foreach (var product in ViewBag.Products)
 {
-<div class="panel-default" style="padding:10px; border:1px solid black; margin: 10px; text-align: center">
-    <div class="panel-body" style="text-align: center">
-        <span>
-            <h4>Product Name: <strong>@product.Name</strong></h4>
-        </span>
-        
-        <br />
+    <div class="panel-default" style="padding:10px; border:1px solid black; margin: 10px; text-align: center">
+        <div class="panel-body" style="text-align: center">
+            <span>
+                <h4>Product Name: <strong>@product.Name</strong></h4>
+            </span>
 
-        <img src="@Url.Content(product.Gallery.ImageUrl1)" width="300" height="450"/>
-        <img src="@Url.Content(product.Gallery.ImageUrl2)" width="300" height="450"/>
-        <img src="@Url.Content(product.Gallery.ImageUrl3)" width="300" height="450"/>
+            <br />
 
-        <br />
-        <br />
+            <img src="@Url.Content(product.Gallery.ImageUrl1)" width="300" height="450" />
+            <img src="@Url.Content(product.Gallery.ImageUrl2)" width="300" height="450" />
+            <img src="@Url.Content(product.Gallery.ImageUrl3)" width="300" height="450" />
 
-        @using (Html.BeginForm(
-                actionName: "Details", controllerName: "Product", method: FormMethod.Get,
-                routeValues: new { id = product.ProductId }))
-        {
-            <button class="btn btn-primary" style="background-color: black; border: none; color: gray; padding: 15px 32px; text-align: center; display: inline-block; font-size: 18px; ">Details</button>
-        }
+            <br />
+            <br />
+
+            <div style="text-align:center">
+                <div style="display:inline-block">
+                    @using (Html.BeginForm(
+                            actionName: "Details", controllerName: "Product", method: FormMethod.Get,
+                            routeValues: new { id = product.ProductId }))
+                    {
+                        <button class="btn btn-primary" style="background-color: black; border: none; color: gray; padding: 15px 32px; text-align: center; display: inline-block; font-size: 18px; ">Details</button>
+                    }
+                </div>
+                <div style="display:inline-block">
+                    @using (Html.BeginForm(
+                            actionName: "Edit", controllerName: "Product", method: FormMethod.Get,
+                            routeValues: new { id = product.ProductId }))
+                    {
+                        <button class="btn btn-primary" style="background-color: black; border: none; color: gray; padding: 15px 32px; text-align: center; display: inline-block; font-size: 18px; ">Edit</button>
+                    }
+                </div>
+                <div style="display:inline-block">
+                    @using (Html.BeginForm(
+                            actionName: "Delete", controllerName: "Product", method: FormMethod.Get,
+                            routeValues: new { id = product.ProductId }))
+                    {
+                        <button class="btn btn-primary" style="background-color: black; border: none; color: gray; padding: 15px 32px; text-align: center; display: inline-block; font-size: 18px; ">Delete</button>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 }
-
+<!--
+<div class="panel-default" style="padding:10px; border:1px solid black; margin: 10px; text-align: center; background-color:black">
+    @Html.ActionLink("Add Product", "New")
+</div>
+-->

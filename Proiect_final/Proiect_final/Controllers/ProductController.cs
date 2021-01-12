@@ -35,5 +35,114 @@ namespace Proiect_final.Controllers
             }
             return HttpNotFound("Missing product id parameter!");
         }
+
+        [NonAction]
+        public IEnumerable<SelectListItem> GetAllCategories()
+        {
+            var selectList = new List<SelectListItem>();
+            foreach (var cat in db.Categories.ToList())
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = cat.CategoryId.ToString(),
+                    Text = cat.Name
+                });
+            }
+            return selectList;
+        }
+
+        [HttpGet]
+        public ActionResult New()
+        {
+            Product product = new Product();
+            product.Gallery = new Gallery();
+            product.CelebritiesWhoRecommand = new List<CelebrityWhoRecommands>();
+            product.CategoryList = GetAllCategories();
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult New(Product productRequest)
+        {
+            try
+            {
+                productRequest.CategoryList = GetAllCategories();
+                if (ModelState.IsValid)
+                {
+                    db.Products.Add(productRequest);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(productRequest);
+            }
+            catch (Exception e)
+            {
+                return View(productRequest);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            var product = db.Products.Find(id);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var oldProduct = db.Products.Find(product.ProductId);
+
+                    if (oldProduct == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    oldProduct.Name = product.Name;
+                    oldProduct.Price = product.Price;
+                    oldProduct.Description = product.Description;
+
+                    TryUpdateModel(oldProduct);
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new { error_message = e.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+            return View(product);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var product = db.Products.Find(id);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.Galleries.Remove(product.Gallery);
+            db.Products.Remove(product);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Product");
+        }
     }
 }

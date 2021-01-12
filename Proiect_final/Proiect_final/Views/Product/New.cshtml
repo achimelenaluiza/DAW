@@ -1,0 +1,37 @@
+﻿@model  Proiect_final.Models.Product
+@{
+    ViewBag.Title = "Add new basic product";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Product", method: FormMethod.Post))
+{
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.TextBoxFor(b => b.Name, null, new { placeholder = "Type in the product's name", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Price", "Price:")
+    <br />
+    @Html.TextBoxFor(b => b.Price, null, new { placeholder = "Type in the product's price", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Price, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextArea("Description", null, new { placeholder = "Type in the products's description", @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Category", "Category:")
+    <br />
+    @Html.DropDownListFor(b => b.CategoryId, new SelectList(Model.CategoryList, "Value", "Text"), "Choose a product category", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.CategoryId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Proiect_final.Models
 {
@@ -24,7 +25,7 @@ namespace Proiect_final.Models
         public string ShopLink { get; set; }
 
         // one to many
-        [Column("Category_id")]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
@@ -33,6 +34,7 @@ namespace Proiect_final.Models
 
         //one to one
         public virtual Gallery Gallery { get; set; }
+        public IEnumerable<SelectListItem> CategoryList { get; set; }
     }
 
     public class DbCtx : DbContext
@@ -45,6 +47,9 @@ namespace Proiect_final.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CelebrityWhoRecommands> CelebrityWhoRecommands { get; set; }
+
+        public DbSet<Gallery> Galleries { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
     }
 
     public class Initp : DropCreateDatabaseAlways<DbCtx>
@@ -52,6 +57,12 @@ namespace Proiect_final.Models
         //custom initializer
         protected override void Seed(DbCtx ctx)
         {
+            Category clothes = new Category { CategoryId = 1, Name = "Clothes" };
+            Category shoes = new Category { CategoryId = 2, Name = "Shoes" };
+
+            ctx.Categories.Add(clothes);
+            ctx.Categories.Add(shoes);
+
             ctx.Products.Add(new Product
             {
                Name = "Little Black Dress",
@@ -62,10 +73,7 @@ namespace Proiect_final.Models
                "birthday bash can easily be dressed up for an evening on the town or dressed down with sneakers for a casual day of shopping. And if " +
                "you're not quite convinced yet that its versatile nature is reason enough to buy it, just take a look at its price tag. At $54, this" +
                " little black dress from Aussie brand Meshki is a steal.",
-               Category = new Category 
-               {
-                   Name = "Clothes"
-               },
+               CategoryId = clothes.CategoryId,
                CelebritiesWhoRecommand = new List<CelebrityWhoRecommands>
                {
                    new CelebrityWhoRecommands 
@@ -93,10 +101,7 @@ namespace Proiect_final.Models
                 Description = " This week, in New York, Victoria Beckham showed that these 'hated' red trousers can look high fashion by wearing a pair of suit trousers from her" +
                               "own collection with a colourful striped knit and a matching red bag. VB stuck to her signature trouser silhouette, " +
                               "opting for high - waisted, wide - leg trousers that cover her shoes.However, if you're more into a cropped silhouette, we have found the perfect pair at Topshop.",
-                Category = new Category
-                {
-                    Name = "Clothes"
-                },
+                CategoryId = clothes.CategoryId,
                 CelebritiesWhoRecommand = new List<CelebrityWhoRecommands>
                {
                    new CelebrityWhoRecommands
@@ -126,10 +131,7 @@ namespace Proiect_final.Models
                               "be the statement of her ensemble as she paired the bold choice with a simple black turtleneck and gray denim. "+
                               "While animal print designs are a trend that will obviously never go away, leopard, zebra and snakeskin patterns were seen on the fall / winter 2020 runways of Miu Miu, Rochas," +
                               "Versace and more.Saweetie sported tiger print boots when she appeared in the music video for the remix of Mulatto’s song “B * tch from Da Souf,” which was released in March.",
-                Category = new Category
-                {
-                    Name = "Shoes"
-                },
+                CategoryId = shoes.CategoryId,
                 CelebritiesWhoRecommand = new List<CelebrityWhoRecommands>
                {
                    new CelebrityWhoRecommands
@@ -157,10 +159,7 @@ namespace Proiect_final.Models
                 Description = "Travis Scott’s Nike collaborations have become so enormously popular that selling them is hazardous to stores. " +
                 "I’m not kidding! For his latest sneaker, a take on the iconic Nike Dunk, Scott gave local skate shops first dibs on sales. This would seem to be a golden" +
                 " opportunity: all of Scott’s collaborative shoes attract a massive amount of attention and sell out instantly.",
-                Category = new Category
-                {
-                    Name = "Shoes"
-                },
+                CategoryId = shoes.CategoryId,
                 CelebritiesWhoRecommand = new List<CelebrityWhoRecommands>
                {
                    new CelebrityWhoRecommands
