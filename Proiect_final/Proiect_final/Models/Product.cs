@@ -18,9 +18,11 @@ namespace Proiect_final.Models
         [MinLength(5, ErrorMessage = "Product name cannot be less than 5"),
             MaxLength(50, ErrorMessage = "Product name cannot be more than 50")]
         public string Name { get; set; }
-        
+
+        [MinLength(20, ErrorMessage = "Product description cannot be less than 20")]
         public string Description { get; set; }
 
+        [Range(1,1000)]
         public double Price { get; set; }
 
         [LinkOnly(ErrorMessage = "Link must be secured! https://")]

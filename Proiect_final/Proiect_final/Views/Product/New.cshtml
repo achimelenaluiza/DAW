@@ -25,6 +25,12 @@
     @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
     <br />
 
+    @Html.Label("ShopLink", "ShopLink:")
+    <br />
+    @Html.TextArea("ShopLink", null, new { placeholder = "Copy the link to the product in shop", @class = "form-control", @rows = "1" })
+    @Html.ValidationMessageFor(b => b.ShopLink, "", new { @class = "text-danger" })
+    <br />
+
     @Html.Label("Category", "Category:")
     <br />
     @Html.DropDownListFor(b => b.CategoryId, new SelectList(Model.CategoryList, "Value", "Text"), "Choose a product category", new { @class = "form-control" })
